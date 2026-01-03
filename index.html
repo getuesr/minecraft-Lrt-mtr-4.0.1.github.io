@@ -1,1 +1,521 @@
-<hl> hello wold！ this LRT交通 "s Html！</h>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隆安轨道交通 | 我的世界MTR铁路建设服务器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#FF7D00',
+                        dark: '#1E293B',
+                        light: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+            .section-padding {
+                @apply py-16 md:py-24;
+            }
+            .container-custom {
+                @apply container mx-auto px-4 md:px-8;
+            }
+        }
+    </style>
+    <!-- 预加载字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-inter bg-light text-dark antialiased">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 bg-blur shadow-sm">
+        <div class="container-custom">
+            <nav class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2">
+                    <i class="fa fa-train text-primary text-2xl"></i>
+                    <span class="text-xl md:text-2xl font-bold text-primary">隆安轨道交通</span>
+                </a>
+
+                <!-- 桌面端导航 -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#about" class="font-medium hover:text-primary transition-colors">关于我们</a>
+                    <a href="#gallery" class="font-medium hover:text-primary transition-colors">图片展示</a>
+                    <a href="#join" class="font-medium hover:text-primary transition-colors">加入我们</a>
+                </div>
+
+                <!-- 加入按钮 (桌面端) -->
+                <a href="#join" class="hidden md:inline-block bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5">
+                    查看加入方式
+                </a>
+
+                <!-- 移动端菜单按钮 -->
+                <button id="menuBtn" class="md:hidden text-dark text-xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t shadow-lg">
+            <div class="container-custom py-4 flex flex-col gap-4">
+                <a href="#about" class="font-medium py-2 hover:text-primary transition-colors">关于我们</a>
+                <a href="#gallery" class="font-medium py-2 hover:text-primary transition-colors">图片展示</a>
+                <a href="#join" class="font-medium py-2 hover:text-primary transition-colors">加入我们</a>
+                <a href="#join" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-primary/90 transition-all">
+                    查看加入方式
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="pt-24 md:pt-32 pb-16 md:pb-24 bg-gradient-to-br from-dark to-primary/90 text-white">
+        <div class="container-custom">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 space-y-6">
+                    <h1 class="text-[clamp(2rem,5vw,4rem)] font-bold leading-tight text-shadow">
+                        打造你的<br>我的世界<span class="text-secondary">轨道交通</span>
+                    </h1>
+                    <p class="text-lg md:text-xl opacity-90 max-w-lg">
+                        【全新启程，自由构建你的轨道世界】<br>
+                        欢迎来到隆安轨道交通我的世界服务器！
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#join" class="bg-secondary text-white px-8 py-3 rounded-lg font-bold shadow-xl hover:shadow-secondary/30 hover:-translate-y-1 transition-all">
+                            立即加入 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#gallery" class="bg-white/20 backdrop-blur-sm text-white border border-white/30 px-8 py-3 rounded-lg font-bold hover:bg-white/30 transition-all">
+                            查看展示 <i class="fa fa-image ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                        <img src="./images/p_1.jpg" alt="我的世界MTR地铁服务器展示" class="w-full h-auto object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <span class="bg-primary/80 px-3 py-1 rounded-full text-sm font-medium">精品服务器</span>
+                                <p class="font-medium mt-2">隆安轨道交通欢迎您</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 装饰元素 -->
+                    <div class="absolute -top-4 -right-4 w-20 h-20 bg-secondary rounded-lg rotate-12 shadow-lg"></div>
+                    <div class="absolute -bottom-6 -left-6 w-16 h-16 bg-white/20 rounded-lg -rotate-12 blur-sm"></div>
+                </div>
+            </div>
+        </div>
+        <!-- 波浪底部 -->
+        <div class="absolute bottom-0 left-0 w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-auto">
+                <path fill="#F8FAFC" fill-opacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 关于服务器 -->
+    <section id="about" class="section-padding bg-light">
+        <div class="container-custom">
+            <div class="text-center mb-16">
+                <span class="text-primary font-semibold">关于我们</span>
+                <h2 class="text-[clamp(1.8rem,3vw,3rem)] font-bold mt-2 mb-4">隆安轨道交通我的世界服务器</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="md:w-1/2">
+                    <img src="./images/p_2.jpg" alt="MTR服务器介绍" class="w-full h-auto rounded-2xl shadow-xl">
+                </div>
+                <div class="md:w-1/2 space-y-6">
+                    <h3 class="text-2xl md:text-3xl font-bold text-dark">欢迎来到隆安轨道交通</h3>
+                    <p class="text-gray-700 text-lg">
+                        这里是一片充满无限可能的铁路天地，无论你是资深轨道爱好者，还是刚刚接触MTR模组的新人，都能在这里找到属于自己的建造乐趣。
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-primary/10 p-3 rounded-lg text-primary">
+                                <i class="fa fa-check text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl">自由共建环境</h4>
+                                <p class="text-gray-600">稳定开放的多人共建环境，自由规划线路、设计站台、调配列车</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-primary/10 p-3 rounded-lg text-primary">
+                                <i class="fa fa-check text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl">创意实现平台</h4>
+                                <p class="text-gray-600">注重友好交流与创意实现，无论喜欢还原现实交通网络，还是打造奇幻立体路网</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-primary/10 p-3 rounded-lg text-primary">
+                                <i class="fa fa-check text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl">长期稳定维护</h4>
+                                <p class="text-gray-600">服务器已配置常用功能模组，并保持长期更新维护</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 图片展示 -->
+    <section id="gallery" class="section-padding bg-gray-50">
+        <div class="container-custom">
+            <div class="text-center mb-16">
+                <span class="text-primary font-semibold">图片展示</span>
+                <h2 class="text-[clamp(1.8rem,3vw,3rem)] font-bold mt-2 mb-4">服务器作品展示</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full"></div>
+            </div>
+
+            <!-- 第一张图片 - 左边图片，右边文字 -->
+            <div class="flex flex-col md:flex-row items-center gap-8 mb-16 md:mb-24">
+                <div class="md:w-1/2">
+                    <img src="./images/p_3.jpg" alt="展示图片1" class="w-full h-auto rounded-2xl shadow-xl">
+                </div>
+                <div class="md:w-1/2 space-y-6">
+                    <h3 class="text-2xl md:text-3xl font-bold text-dark">展示内容</h3>
+                    <p class="text-gray-700 text-lg">
+                        暂未介绍
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-primary/10 p-3 rounded-lg text-primary">
+                                <i class="fa fa-info-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl">暂未介绍</h4>
+                                <p class="text-gray-600">暂未介绍</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第二张图片 - 右边图片，左边文字 -->
+            <div class="flex flex-col md:flex-row-reverse items-center gap-8 mb-16 md:mb-24">
+                <div class="md:w-1/2">
+                    <img src="./images/p_4.jpg" alt="展示图片2" class="w-full h-auto rounded-2xl shadow-xl">
+                </div>
+                <div class="md:w-1/2 space-y-6">
+                    <h3 class="text-2xl md:text-3xl font-bold text-dark">展示内容</h3>
+                    <p class="text-gray-700 text-lg">
+                        暂未介绍
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-primary/10 p-3 rounded-lg text-primary">
+                                <i class="fa fa-info-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl">暂未介绍</h4>
+                                <p class="text-gray-600">暂未介绍</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第三张图片 - 左边图片，右边文字 -->
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <img src="./images/p_5.jpg" alt="展示图片3" class="w-full h-auto rounded-2xl shadow-xl">
+                </div>
+                <div class="md:w-1/2 space-y-6">
+                    <h3 class="text-2xl md:text-3xl font-bold text-dark">展示内容</h3>
+                    <p class="text-gray-700 text-lg">
+                        暂未介绍
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-primary/10 p-3 rounded-lg text-primary">
+                                <i class="fa fa-info-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl">暂未介绍</h4>
+                                <p class="text-gray-600">暂未介绍</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 加入我们 -->
+    <section id="join" class="section-padding bg-gradient-to-br from-primary/10 to-secondary/10">
+        <div class="container-custom">
+            <div class="text-center mb-16">
+                <span class="text-primary font-semibold">立即加入</span>
+                <h2 class="text-[clamp(1.8rem,3vw,3rem)] font-bold mt-2 mb-4">新的征程已经开启</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto rounded-full"></div>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-6">
+                    让我们一起铺就通向想象的轨道！共同打造不断生长的轨道王国。
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-12">
+                    <div class="md:w-1/2 space-y-6">
+                        <h3 class="text-2xl md:text-3xl font-bold">加入方式</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl">
+                                    <i class="fa fa-qq"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">QQ交流群</h4>
+                                    <p class="text-gray-600">762519188</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">关注我们</h4>
+                                    <p class="text-gray-600">@盼盼俊 @小柯吼</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+                                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-xl">
+                                    <i class="fa fa-video-camera"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">精彩瞬间</h4>
+                                    <p class="text-gray-600 text-sm break-all">https://v.douyin.com/zN9F6253LqU/</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:w-1/2 space-y-6">
+                        <h3 class="text-2xl md:text-3xl font-bold">期待你的加入</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold shrink-0">
+                                    1
+                                </div>
+                                <div class="flex-1 pt-1">
+                                    <p class="text-gray-700">加入QQ交流群762519188，获取服务器最新信息和加入方式</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold shrink-0">
+                                    2
+                                </div>
+                                <div class="flex-1 pt-1">
+                                    <p class="text-gray-700">关注@盼盼俊 @小柯吼，了解服务器最新动态和作品展示</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold shrink-0">
+                                    3
+                                </div>
+                                <div class="flex-1 pt-1">
+                                    <p class="text-gray-700">观看精彩瞬间视频，了解服务器真实建造场景</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold shrink-0">
+                                    4
+                                </div>
+                                <div class="flex-1 pt-1">
+                                    <p class="text-gray-700">进入服务器，开始你的轨道建造之旅</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center pt-4">
+                            <p class="text-gray-600 text-sm">我们期待更多热爱铁路、享受建造的朋友加入，共同打造不断生长的轨道王国。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12 md:py-16">
+        <div class="container-custom">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+                <div>
+                    <a href="#" class="flex items-center gap-2 mb-6">
+                        <i class="fa fa-train text-primary text-2xl"></i>
+                        <span class="text-xl md:text-2xl font-bold text-white">隆安轨道交通</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        一片充满无限可能的铁路天地，为玩家提供高质量的轨道交通建造体验。
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://wiki.minecrafttransitrailway.com/zh:mtr:4.0.x" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fa fa-external-link"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">管理人员</h4>
+                    <ul class="space-y-3">
+                        <li class="text-gray-400">腐竹: WZMTR</li>
+                        <li class="text-gray-400">管理: 小柯吼</li>
+                        <li class="text-gray-400">管理: A380fly</li>
+                        <li class="text-gray-400">管理: Panpanjun</li>
+                        <li class="text-gray-400">(进群查看全部管理)</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">相关资源</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="https://wiki.minecrafttransitrailway.com/zh:mtr:4.0.x" target="_blank" class="text-gray-400 hover:text-primary transition-colors flex items-center gap-2">
+                                <i class="fa fa-external-link"></i>
+                                MTR Mod官网
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6">联系我们</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <i class="fa fa-qq text-primary"></i>
+                            <span>QQ群：762519188</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <i class="fa fa-bilibili text-primary"></i>
+                            <span>B站：隆安轨道交通</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <i class="fa fa-video-camera text-primary"></i>
+                            <span class="text-sm">视频：v.douyin.com/zN9F6253LqU/</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm">© 2025 隆安轨道交通我的世界服务器</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <span class="text-gray-500 text-sm">新的征程已经开启，让我们一起铺就通向想象的轨道！</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all hover:bg-primary/90">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // 切换图标
+            const icon = menuBtn.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.remove('bg-white/90');
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.add('bg-white/90');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // 关闭移动端菜单
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        const icon = menuBtn.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+
+                    // 滚动到目标位置
+                    const navbarHeight = navbar.offsetHeight;
+                    const targetPosition = targetElement.offsetTop - navbarHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 返回顶部按钮
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
